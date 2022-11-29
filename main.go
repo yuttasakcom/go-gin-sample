@@ -16,13 +16,6 @@ func Migrate(db *gorm.DB) {
 }
 
 func main() {
-	/** Initialization
-	  - Dotenv
-		- Database
-		- Middleware
-		- Routes
-	**/
-
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
@@ -32,10 +25,8 @@ func main() {
 	Migrate(db)
 
 	r := gin.Default()
-
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"msg": "pong"})
 	})
-
 	r.Run()
 }
